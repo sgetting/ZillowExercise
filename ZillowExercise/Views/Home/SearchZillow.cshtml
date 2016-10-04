@@ -1,0 +1,28 @@
+﻿@{
+   ViewBag.Title = "Search Zillow";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        @model ZillowExercise.Models.Address
+
+        @using (Html.BeginForm("SubmitAddress", "SearchResults", FormMethod.Post))
+        {
+        <p>Address Line 1: </p>@Html.TextBoxFor(m => m.AddressLine1);
+        <p>Address Line 2: </p>@Html.TextBoxFor(m => m.AddressLine2);
+        <p>City: </p>@Html.TextBoxFor(m => m.City);
+        <p>State: </p>@Html.TextBoxFor(m => m.State);
+        <p>Zip Code: </p>@Html.TextBoxFor(m => m.ZipCode);
+        <br /><input type="submit" value="Search Zillow For Address"/>
+        }
+
+    </div>
+</body>
+</html>

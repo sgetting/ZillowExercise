@@ -1,0 +1,95 @@
+﻿@model ZillowExercise.Models.SearchResults
+@using ZillowExercise.Models
+
+@{
+   ViewBag.Title = "Address Lookup Results";
+}
+
+<h2>SubmitAddress</h2>
+
+<div>
+    <h4>SearchResults</h4>
+    <hr />
+    <dl class="dl-horizontal"></dl>
+</div>
+<p>
+    @if (Model.message.code == 0)
+    {
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        @{
+           Model.response.results = Model.response.results.OrderBy(result => result.address.street).ToList();
+        }
+        @foreach (responseResultsResult result in Model.response.results)
+        {
+        <div class="resultContainer panel panel-default panel-group panel-collapse">
+            <div class="panel-heading h4" role="tab" id="accordion-heading-@result.zpid">
+                <a data-toggle="collapse" data-parent="#accordion" href="#accordion-content-@result.zpid" aria-expanded="false" aria-controls="accordion-content-@result.zpid">
+                    <span class="glyphicon glyphicon-chevron-down"></span> @result.address.street (ZPID: @result.zpid)
+                </a>
+            </div>
+            <div id="accordion-content-@result.zpid" class="panel-collapse collapse" role="tabpanel" aria-expanded="false" aria-labelledby="accordion-heading-@result.zpid">
+                <div class="panel panel-info">
+                    <div class="panel-heading">Address</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr><td>Street Address</td><td>@result.address.street</td></tr>
+                            <tr><td>Zip Code</td><td>@result.address.zipcode</td></tr>
+                            <tr><td>City</td><td>@result.address.city</td></tr>
+                            <tr><td>State</td><td>@result.address.state</td></tr>
+                            <tr><td>Latitude</td><td>@result.address.latitude</td></tr>
+                            <tr><td>Longitude</td><td>@result.address.longitude</td></tr>
+                        </table>
+                        @if (!string.IsNullOrEmpty(result.links.homedetails))
+                        {
+                        <div><a href="@result.links.homedetails">Home Details</a></div>
+                        }
+                        @if (!string.IsNullOrEmpty(result.links.graphsanddata))
+                        {
+                        <div><a href="@result.links.graphsanddata">Graphs and Data</a></div>
+                        }
+                        @if (!string.IsNullOrEmpty(result.links.mapthishome))
+                        {
+                        <div><a href="@result.links.mapthishome">Map This Home</a></div>
+                        }
+                        @if (!string.IsNullOrEmpty(result.links.comparables))
+                        {
+                        <div><a href="@result.links.comparables">Comparable Homes</a></div>
+                        }
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Zestimate</div>
+                    <div class="panel-body">
+                        <table class="table">
+                            <tr><td>Amount</td><td>@result.zestimate.amount.Value @result.zestimate.amount.currency</td></tr>
+                            <tr><td>Last Updated</td><td>@result.zestimate.lastupdated</td></tr>
+                            <tr><td>@result.zestimate.valueChange.duration-Day Change</td><td>@result.zestimate.valueChange.Value @result.zestimate.valueChange.currency</td></tr>
+                            <tr><td>Low</td><td>@result.zestimate.valuationRange.low.Value @result.zestimate.valuationRange.low.currency</td></tr>
+                            <tr><td>High</td><td>@result.zestimate.valuationRange.high.Value @result.zestimate.valuationRange.high.currency</td></tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-info">
+                    <div class="panel-heading">Region</div>
+                    <div class="panel-body">
+                        <div>@result.localRealEstate.region.name (@result.localRealEstate.region.type)</div>
+                        @if (!string.IsNullOrEmpty(result.localRealEstate.region.zindexValue))
+                        {
+                        <div>ZIndex Value: @result.localRealEstate.region.zindexValue</div>
+                        }
+                        <div><a href="@result.localRealEstate.region.links.overview">Overview</a></div>
+                        <div><a href="@result.localRealEstate.region.links.forSale">For Sale</a></div>
+                        <div><a href="@result.localRealEstate.region.links.forSaleByOwner">For Sale By Owner</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+           }
+           else
+           {
+        <p class="h2 danger"><span class="glyphicon glyphicon-exclamation-sign"></span>There was an error in the response from the Zillow GetSearchResults API: "@Model.message.text".</p>
+           }
+
+    @Html.ActionLink("Return To Search", "SearchZillow", "Home", null, htmlAttributes: new Dictionary<string, object>() { { "class", "btn btn-lg" } })

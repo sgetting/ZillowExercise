@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZillowExercise", "ZillowExercise\ZillowExercise.csproj", "{8450B4CF-BBEE-405D-9BD7-37D785E5C521}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZillowExercise.Tests", "ZillowExercise.Tests\ZillowExercise.Tests.csproj", "{9BD30201-FD5B-4F2B-BB27-E7F684D6AB29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8450B4CF-BBEE-405D-9BD7-37D785E5C521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8450B4CF-BBEE-405D-9BD7-37D785E5C521}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8450B4CF-BBEE-405D-9BD7-37D785E5C521}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8450B4CF-BBEE-405D-9BD7-37D785E5C521}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD30201-FD5B-4F2B-BB27-E7F684D6AB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD30201-FD5B-4F2B-BB27-E7F684D6AB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD30201-FD5B-4F2B-BB27-E7F684D6AB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD30201-FD5B-4F2B-BB27-E7F684D6AB29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
